@@ -134,7 +134,22 @@ def check_columns():
 
 
 def check_diagonals():
+    # set up global variable
+    global game_still_going
+    # check if any of the diagonals have all the same values (and is not empty)
+    diagonal_1 = board[0] == board[4] == board[8] != "-"
+    diagonal_2 = board[2] == board[4] == board[6] != "-"
+
+    # if any of the diagonals have a win, flag that there is a win
+    if diagonal_1 or diagonal_2:
+        game_still_going = False
+    # Return the winner(X or O)
+    if diagonal_1:
+        return board[0]
+    elif diagonal_2:
+        return board[2]
     return
+
 
 def check_if_tie():
     return
