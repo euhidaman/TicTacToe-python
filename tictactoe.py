@@ -113,7 +113,25 @@ def check_rows():
     return
 
 def check_columns():
+    # set up global variable
+    global game_still_going
+    # check if any of the columns have all the same values (and is not empty)
+    column_1 = board[0] == board[3] == board[6] != "-"
+    column_2 = board[1] == board[4] == board[7] != "-"
+    column_3 = board[2] == board[5] == board[8] != "-"
+
+    # if any of the columns have a win, flag that there is a win
+    if column_1 or column_2 or column_3:
+        game_still_going = False
+    # Return the winner(X or O)
+    if column_1:
+        return board[0]
+    elif column_2:
+        return board[1]
+    elif column_3:
+        return board[2]
     return
+
 
 def check_diagonals():
     return
