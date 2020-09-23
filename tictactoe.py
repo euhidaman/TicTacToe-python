@@ -81,11 +81,11 @@ def check_for_winner():
     diagonal_winner = check_diagonals()
 
     if row_winner:
-        winner  = row_winner()
+        winner  = row_winner
     elif column_winner:
-        winner = column_winner()
+        winner = column_winner
     elif diagonal_winner:
-        winner = diagonal_winner()
+        winner = diagonal_winner
     else:
         # there was no win
         winner = None
