@@ -1,5 +1,3 @@
-# time in video ==> 5:45:00
-
 # elements required-->
 # board
 # display board
@@ -18,7 +16,7 @@ board = ["-", "-", "-",
          "-", "-", "-",
          "-", "-", "-"]
 
-# if Game still goin on
+# if Game still going on
 game_still_going = True
 
 # Who won ? or Tie?
@@ -63,10 +61,17 @@ def handle_turn(player):
     print(player + "'s Turn.")
     position = input("Choose a position from 1 to 9: ")
 
-    if position not in ["1","2","3","4","5","6","7","8","9"]:
-        position = input("Invalid input. Choose a position from 1 to 9:")
+    valid = False
+    while not valid:
+        while position not in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]:
+            position = input("Choose a position from 1 to 9:")
 
-    position = int(position) - 1
+        position = int(position) - 1
+
+        if board[position] == "-":
+            valid = True
+        else:
+            print("\nYou can't go there. Try again.")
 
     board[position] = player
     display_board()
@@ -160,6 +165,7 @@ def check_diagonals():
     elif diagonal_2:
         return board[2]
     return
+
 
 # check for tie
 def check_if_tie():
