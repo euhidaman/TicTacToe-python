@@ -1,4 +1,4 @@
-# time in video ==> 5:40:00
+# time in video ==> 5:45:00
 
 # elements required-->
 # board
@@ -60,7 +60,12 @@ def play_game():
 
 # handle a single turn of an arbitrary player
 def handle_turn(player):
+    print(player + "'s Turn.")
     position = input("Choose a position from 1 to 9: ")
+
+    if position not in ["1","2","3","4","5","6","7","8","9"]:
+        position = input("Invalid input. Choose a position from 1 to 9:")
+
     position = int(position) - 1
 
     board[position] = player
@@ -156,8 +161,11 @@ def check_diagonals():
         return board[2]
     return
 
-
+# check for tie
 def check_if_tie():
+    global game_still_going
+    if "-" not in board:
+        game_still_going = False
     return
 
 
