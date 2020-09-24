@@ -1,4 +1,4 @@
-# time in video ==> 5:30:00
+# time in video ==> 5:40:00
 
 # elements required-->
 # board
@@ -6,14 +6,14 @@
 # play game
 # handle turn
 # check win
-  # -check row
-  # -check column
-  # -check diagonal
+# -check row
+# -check column
+# -check diagonal
 # check tie
 # flip player
 
 
-#------------GlobalVariable-------------
+# ------------GlobalVariable-------------
 board = ["-", "-", "-",
          "-", "-", "-",
          "-", "-", "-"]
@@ -27,11 +27,13 @@ winner = None
 # Who's turn , is it?
 current_player = "X"
 
+
 # display board
 def display_board():
     print(board[0] + " | " + board[1] + " | " + board[2])
     print(board[3] + " | " + board[4] + " | " + board[5])
     print(board[6] + " | " + board[7] + " | " + board[8])
+
 
 # play game tic tac toe
 def play_game():
@@ -40,7 +42,6 @@ def play_game():
 
     # while the game is still going on
     while game_still_going:
-
         # handle a single turn of an arbitraray player
         handle_turn(current_player)
 
@@ -51,22 +52,25 @@ def play_game():
         flip_player()
 
     # the game has ended
-    if winner =='X' or winner =='O':
+    if winner == 'X' or winner == 'O':
         print(winner + ' won.')
-    elif winner == None :
+    elif winner is None:
         print("Tie.")
 
-# handle a single turn of an arbitraray player
+
+# handle a single turn of an arbitrary player
 def handle_turn(player):
     position = input("Choose a position from 1 to 9: ")
-    position = int(position)-1
+    position = int(position) - 1
 
-    board[position] = "X"
+    board[position] = player
     display_board()
+
 
 def check_if_game_over():
     check_for_winner()
     check_if_tie()
+
 
 def check_for_winner():
     # set up global variable
@@ -81,7 +85,7 @@ def check_for_winner():
     diagonal_winner = check_diagonals()
 
     if row_winner:
-        winner  = row_winner
+        winner = row_winner
     elif column_winner:
         winner = column_winner
     elif diagonal_winner:
@@ -91,6 +95,7 @@ def check_for_winner():
         winner = None
 
     return
+
 
 def check_rows():
     # set up global variable
@@ -107,10 +112,11 @@ def check_rows():
     if row_1:
         return board[0]
     elif row_2:
-        return  board[3]
+        return board[3]
     elif row_3:
-        return  board[6]
+        return board[6]
     return
+
 
 def check_columns():
     # set up global variable
@@ -154,7 +160,17 @@ def check_diagonals():
 def check_if_tie():
     return
 
+
 def flip_player():
+    # global variable for current_player
+    global current_player
+    # if the current player is 'X', change it to 'O'
+    if current_player == 'X':
+        current_player = 'O'
+    # if the current_player is 'O', change it to 'X'
+    elif current_player == 'O':
+        current_player = 'X'
     return
+
 
 play_game()
