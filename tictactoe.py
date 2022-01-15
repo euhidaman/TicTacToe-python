@@ -187,4 +187,5 @@ def flip_player():
     return
 
 
+# Function to play the full game
 play_game()
